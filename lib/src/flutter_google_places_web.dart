@@ -116,6 +116,7 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
 
     for (var i = 0; i < predictions.length; i++) {
       String name = predictions[i]['description'];
+      String placeId = predictions[i]['place_id'];
       String streetAddress =
           predictions[i]['structured_formatting']['main_text'];
       List<dynamic> terms = predictions[i]['terms'];
@@ -126,6 +127,7 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
         streetAddress: streetAddress,
         city: city,
         country: country,
+        placeId: placeId,
       ));
     }
 
@@ -262,9 +264,10 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
 }
 
 class Address {
-  String name;
+  String name, placeId;
   String streetAddress;
   String city;
   String country;
-  Address({this.name, this.streetAddress, this.city, this.country});
+  Address(
+      {this.name, this.streetAddress, this.city, this.country, this.placeId});
 }

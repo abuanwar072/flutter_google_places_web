@@ -23,8 +23,8 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - packages/flutter_google_places_web/assets/google_black.png
-    - packages/flutter_google_places_web/assets/google_white.png
+    - assets/google_black.png
+    - assets/google_white.png
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
