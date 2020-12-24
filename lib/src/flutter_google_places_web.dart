@@ -231,13 +231,6 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
                                             .toList(),
                                       ),
                               ),
-                              Container(
-                                height: 30,
-                                child: Image.asset(
-                                  'packages/flutter_google_places/assets/google_white.png',
-                                  scale: 3,
-                                ),
-                              ),
                             ],
                           ),
                           decoration: BoxDecoration(
