@@ -139,6 +139,7 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
       FlutterGooglePlacesWeb.showResults = false;
       controller.text = clickedAddress.name;
       FlutterGooglePlacesWeb.value['name'] = clickedAddress.name;
+      FlutterGooglePlacesWeb.value['placeId'] = clickedAddress.placeId;
       FlutterGooglePlacesWeb.value['streetAddress'] =
           clickedAddress.streetAddress;
       FlutterGooglePlacesWeb.value['city'] = clickedAddress.city;
