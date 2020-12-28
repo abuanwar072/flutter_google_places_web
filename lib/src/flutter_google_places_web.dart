@@ -134,7 +134,7 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
     return displayedResults;
   }
 
-  selectResult(Address clickedAddress) async {
+  selectResult(Address clickedAddress) {
     setState(() {
       FlutterGooglePlacesWeb.showResults = false;
       controller.text = clickedAddress.name;
