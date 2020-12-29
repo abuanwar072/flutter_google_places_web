@@ -45,6 +45,8 @@ class FlutterGooglePlacesWeb extends StatefulWidget {
   final String components;
   final InputDecoration decoration;
   final bool required;
+  final VoidCallback editComplete;
+  final ValueChanged onSave;
 
   FlutterGooglePlacesWeb(
       {Key key,
@@ -54,7 +56,9 @@ class FlutterGooglePlacesWeb extends StatefulWidget {
       this.components,
       this.sessionToken = true,
       this.decoration,
-      this.required});
+      this.required,
+      this.editComplete,
+      this.onSave});
 
   @override
   FlutterGooglePlacesWebState createState() => FlutterGooglePlacesWebState();
@@ -203,12 +207,8 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
                     }
                     return null;
                   },
-                  onEditingComplete: () {
-                    print("edit complit");
-                  },
-                  onSaved: (newValue) {
-                    print("On Save");
-                  },
+                  onEditingComplete: widget.editComplete,
+                  onSaved: widget.onSave,
                   onChanged: (text) {
                     setState(() {
                       getLocationResults(text);
