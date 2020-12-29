@@ -142,18 +142,20 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
     Response response = await Dio().get(url);
     Map<String, dynamic> location =
         response.data['result']["geometry"]["location"];
-    setState(() {
-      FlutterGooglePlacesWeb.showResults = false;
-      controller.text = clickedAddress.name;
-      FlutterGooglePlacesWeb.value['name'] = clickedAddress.name;
-      FlutterGooglePlacesWeb.value['placeId'] = clickedAddress.placeId;
-      FlutterGooglePlacesWeb.value['streetAddress'] =
-          clickedAddress.streetAddress;
-      FlutterGooglePlacesWeb.value['city'] = clickedAddress.city;
-      FlutterGooglePlacesWeb.value['country'] = clickedAddress.country;
-      FlutterGooglePlacesWeb.value['lat'] = location['lat'].toString();
-      FlutterGooglePlacesWeb.value['lng'] = location['lng'].toString();
-    });
+
+    if (response.statusCode == 200)
+      setState(() {
+        FlutterGooglePlacesWeb.showResults = false;
+        controller.text = clickedAddress.name;
+        FlutterGooglePlacesWeb.value['name'] = clickedAddress.name;
+        FlutterGooglePlacesWeb.value['placeId'] = clickedAddress.placeId;
+        FlutterGooglePlacesWeb.value['streetAddress'] =
+            clickedAddress.streetAddress;
+        FlutterGooglePlacesWeb.value['city'] = clickedAddress.city;
+        FlutterGooglePlacesWeb.value['country'] = clickedAddress.country;
+        FlutterGooglePlacesWeb.value['lat'] = location['lat'].toString();
+        FlutterGooglePlacesWeb.value['lng'] = location['lng'].toString();
+      });
   }
 
   @override
