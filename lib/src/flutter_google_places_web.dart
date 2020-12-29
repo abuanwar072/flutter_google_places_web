@@ -203,6 +203,12 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
                     }
                     return null;
                   },
+                  onEditingComplete: () {
+                    print("edit complit");
+                  },
+                  onSaved: (newValue) {
+                    print("On Save");
+                  },
                   onChanged: (text) {
                     setState(() {
                       getLocationResults(text);
