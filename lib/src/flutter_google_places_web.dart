@@ -150,8 +150,8 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
           clickedAddress.streetAddress;
       FlutterGooglePlacesWeb.value['city'] = clickedAddress.city;
       FlutterGooglePlacesWeb.value['country'] = clickedAddress.country;
-      FlutterGooglePlacesWeb.value['lat'] = location['lat'];
-      FlutterGooglePlacesWeb.value['lng'] = location['lng'];
+      FlutterGooglePlacesWeb.value['lat'] = location['lat'].toString();
+      FlutterGooglePlacesWeb.value['lng'] = location['lng'].toString();
     });
   }
 
