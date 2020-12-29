@@ -6,11 +6,13 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter_google_places_web/src/search_results_tile.dart';
 
 class FlutterGooglePlacesWeb extends StatefulWidget {
-  ///[value] stores the clicked address data in
+  ///[value] stores the clicked address data in also lat and lng
   ///FlutterGooglePlacesWeb.value['name'] = '1600 Amphitheatre Parkway, Mountain View, CA, USA';
   ///FlutterGooglePlacesWeb.value['streetAddress'] = '1600 Amphitheatre Parkway';
   ///FlutterGooglePlacesWeb.value['city'] = 'CA';
   ///FlutterGooglePlacesWeb.value['country'] = 'USA';
+  ///FlutterGooglePlacesWeb.value['lat']
+  ///FlutterGooglePlacesWeb.value['lng']
   static Map<String, String> value;
 
   ///[showResults] boolean shows results container
@@ -134,7 +136,11 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
     return displayedResults;
   }
 
-  selectResult(Address clickedAddress) {
+  selectResult(Address clickedAddress) async {
+    String url =
+        "${widget.proxyURL}https://maps.googleapis.com/maps/api/place/details/json?placeid=${clickedAddress.placeId}&key=${widget.apiKey}";
+    Response response = await Dio().get(url);
+    var location = response.data['result']["geometry"]["location"];
     setState(() {
       FlutterGooglePlacesWeb.showResults = false;
       controller.text = clickedAddress.name;
@@ -144,6 +150,8 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
           clickedAddress.streetAddress;
       FlutterGooglePlacesWeb.value['city'] = clickedAddress.city;
       FlutterGooglePlacesWeb.value['country'] = clickedAddress.country;
+      FlutterGooglePlacesWeb.value['lat'] = location['lat'];
+      FlutterGooglePlacesWeb.value['lng'] = location['lng'];
     });
   }
 
@@ -262,6 +270,11 @@ class Address {
   String streetAddress;
   String city;
   String country;
-  Address(
-      {this.name, this.streetAddress, this.city, this.country, this.placeId});
+  Address({
+    this.name,
+    this.streetAddress,
+    this.city,
+    this.country,
+    this.placeId,
+  });
 }
