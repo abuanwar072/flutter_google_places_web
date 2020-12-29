@@ -140,7 +140,8 @@ class FlutterGooglePlacesWebState extends State<FlutterGooglePlacesWeb>
     String url =
         "${widget.proxyURL}https://maps.googleapis.com/maps/api/place/details/json?placeid=${clickedAddress.placeId}&key=${widget.apiKey}";
     Response response = await Dio().get(url);
-    var location = response.data['result']["geometry"]["location"];
+    Map<String, dynamic> location =
+        response.data['result']["geometry"]["location"];
     setState(() {
       FlutterGooglePlacesWeb.showResults = false;
       controller.text = clickedAddress.name;
